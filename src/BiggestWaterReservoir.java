@@ -10,17 +10,13 @@ public class BiggestWaterReservoir {
         int left = 0;
         int right = arr.length - 1;
         while (left < right) {
-            if (arr[left] <= arr[right]) {
-                int square = arr[left] * (right - left);
-                if (biggestSquare < square) {
-                    biggestSquare = square;
-                }
+            int length = right - left;
+            int leftHeight = arr[left];
+            int rightHeight = arr[right];
+            biggestSquare = Math.max(biggestSquare, Math.min(leftHeight, rightHeight) * length);
+            if (leftHeight <= rightHeight) {
                 left++;
             } else {
-                int square = arr[right] * (right - left);
-                if (biggestSquare < square) {
-                    biggestSquare = square;
-                }
                 right--;
             }
         }
